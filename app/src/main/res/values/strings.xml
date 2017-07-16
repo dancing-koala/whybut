@@ -1,3 +1,38 @@
 <resources>
-    <string name="app_name">What have you been up to</string>
+    <string name="app_name">W.H.Y.B.U.T</string>
+    <string name="settings_activity_title">Settings</string>
+
+    <!--General-->
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
+
+    <!--Settings related-->
+    <string name="preferences_filename">com.dancing_koala.whathaveyoubeenupto.PREFERENCES_FILE</string>
+    <string name="settings_title_working_days">Working days</string>
+    <string name="settings_title_reminders">Reminders</string>
+
+    <!--Time related-->
+    <string name="time_not_defined">88:88</string>
+
+    <!--Days of week-->
+    <string name="dow_monday">Monday</string>
+    <string name="dow_tuesday">Tuesday</string>
+    <string name="dow_wednesday">Wednesday</string>
+    <string name="dow_thursday">Thursday</string>
+    <string name="dow_friday">Friday</string>
+    <string name="dow_saturday">Saturday</string>
+    <string name="dow_sunday">Sunday</string>
+
+    <string name="dow_monday_abbr">M</string>
+    <string name="dow_tuesday_abbr">Tu</string>
+    <string name="dow_wednesday_abbr">W</string>
+    <string name="dow_thursday_abbr">Th</string>
+    <string name="dow_friday_abbr">F</string>
+    <string name="dow_saturday_abbr">Sa</string>
+    <string name="dow_sunday_abbr">Su</string>
+
+    <!--Reminders-->
+    <string name="reminder_1_label">Reminder #1 at</string>
+    <string name="reminder_2_label">Reminder #2 at</string>
+    <string name="reminder_3_label">Reminder #3 at</string>
 </resources>

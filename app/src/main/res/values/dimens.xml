@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="Base.Margin.Small">8dp</dimen>
+    <dimen name="Base.Margin.Normal">16dp</dimen>
+
+    <dimen name="SettingCardview.Title.Margin.Bottom">16dp</dimen>
+    <dimen name="SettingCardview.Padding">8dp</dimen>
+    <dimen name="SettingCardview.Spacing">8dp</dimen>
+
+    <dimen name="DayToggleButton.Size">36dp</dimen>
+
+    <dimen name="List.Item.Simple.Height">48dp</dimen>
+    <dimen name="List.Item.Simple.Padding.H">16dp</dimen>
+    <dimen name="List.Item.Simple.WithActions.SecondaryAction.Size">32dp</dimen>
+    <dimen name="List.Item.Simple.WithActions.SecondaryAction.Padding">4dp</dimen>
+
+    <!--Dimensions from material design guidelines-->
+    <dimen name="Dialog.ContentArea.Padding">24dp</dimen>
+    <dimen name="Dialog.Title.MarginBottom">20dp</dimen>
+    <dimen name="Dialog.ActionArea.Padding">8dp</dimen>
+    <dimen name="Dialog.ActionArea.Height">52dp</dimen>
+    <dimen name="Dialog.Action.Height">36dp</dimen>
+    <dimen name="Dialog.Action.Padding.H">8dp</dimen>
+    <dimen name="Dialog.Action.Spacing">8dp</dimen>
+</resources>
