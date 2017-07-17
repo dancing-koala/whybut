@@ -31,12 +31,14 @@ public class EntryDaoMapperTest {
         int[] tagIdsArray = new int[]{1, 1, 2, 3, 5, 8, 12, 21};
         long created = System.currentTimeMillis();
         Long archived = created + 2000L;
+        String dayOfYear = "2017-07-16";
 
 
         EntryEntity entity = new EntryEntity(
                 id,
                 content,
                 tagIdsJson,
+                dayOfYear,
                 created,
                 archived
         );
@@ -45,6 +47,7 @@ public class EntryDaoMapperTest {
 
         assertTrue(id == model.getId());
         assertEquals(content, model.getContent());
+        assertEquals(dayOfYear, model.getDayOfYear());
         assertArrayEquals(tagIdsArray, model.getTagIds());
         assertTrue(created == model.getCreated());
         assertTrue(archived == model.getArchived().longValue());

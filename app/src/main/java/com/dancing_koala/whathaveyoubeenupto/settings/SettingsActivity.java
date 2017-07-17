@@ -3,7 +3,6 @@ package com.dancing_koala.whathaveyoubeenupto.settings;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -15,6 +14,7 @@ import android.widget.ToggleButton;
 import com.codetroopers.betterpickers.radialtimepicker.RadialTimePickerDialogFragment;
 import com.codetroopers.betterpickers.timepicker.TimePickerDialogFragment;
 import com.dancing_koala.whathaveyoubeenupto.R;
+import com.dancing_koala.whathaveyoubeenupto.application.utils.DateTimeUtils;
 import com.dancing_koala.whathaveyoubeenupto.settings.mvp.ISettingsEditorView;
 import com.dancing_koala.whathaveyoubeenupto.settings.mvp.SettingsPresenter;
 
@@ -188,7 +188,7 @@ public class SettingsActivity extends AppCompatActivity implements ISettingsEdit
         mTimePickerDialog.setOnTimeSetListener(new RadialTimePickerDialogFragment.OnTimeSetListener() {
             @Override
             public void onTimeSet(RadialTimePickerDialogFragment dialog, int hourOfDay, int minute) {
-                String formattedTime = formatTime(hourOfDay, minute);
+                String formattedTime = DateTimeUtils.formatTime(hourOfDay, minute);
                 mPresenter.setReminder1Time(formattedTime);
                 mReminder1Time.setText(formattedTime);
             }
@@ -203,7 +203,7 @@ public class SettingsActivity extends AppCompatActivity implements ISettingsEdit
         mTimePickerDialog.setOnTimeSetListener(new RadialTimePickerDialogFragment.OnTimeSetListener() {
             @Override
             public void onTimeSet(RadialTimePickerDialogFragment dialog, int hourOfDay, int minute) {
-                String formattedTime = formatTime(hourOfDay, minute);
+                String formattedTime = DateTimeUtils.formatTime(hourOfDay, minute);
                 mPresenter.setReminder2Time(formattedTime);
                 mReminder2Time.setText(formattedTime);
             }
@@ -218,7 +218,7 @@ public class SettingsActivity extends AppCompatActivity implements ISettingsEdit
         mTimePickerDialog.setOnTimeSetListener(new RadialTimePickerDialogFragment.OnTimeSetListener() {
             @Override
             public void onTimeSet(RadialTimePickerDialogFragment dialog, int hourOfDay, int minute) {
-                String formattedTime = formatTime(hourOfDay, minute);
+                String formattedTime = DateTimeUtils.formatTime(hourOfDay, minute);
                 mPresenter.setReminder3Time(formattedTime);
                 mReminder3Time.setText(formattedTime);
             }
@@ -235,9 +235,5 @@ public class SettingsActivity extends AppCompatActivity implements ISettingsEdit
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    private String formatTime(int hours, int minutes) {
-        return ((hours > 9) ? "" : "0") + hours + ":" + ((minutes > 9) ? "" : "0") + minutes;
     }
 }

@@ -27,6 +27,7 @@ public class EntryDaoMapper extends BaseMapper<Entry, EntryEntity> {
             model.setTagIds(new int[0]);
             e.printStackTrace();
         }
+        model.setDayOfYear(entity.getDayOfYear());
         model.setArchived(entity.getArchived());
         model.setCreated(entity.getCreated());
 
@@ -48,6 +49,7 @@ public class EntryDaoMapper extends BaseMapper<Entry, EntryEntity> {
             e.printStackTrace();
             entity.setTagIds(DEFAULT_JSON_ARRAY);
         }
+        entity.setDayOfYear(model.getDayOfYear());
         entity.setArchived(model.getArchived());
         entity.setCreated(model.getCreated());
 

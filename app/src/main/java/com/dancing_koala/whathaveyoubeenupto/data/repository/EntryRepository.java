@@ -1,6 +1,7 @@
 package com.dancing_koala.whathaveyoubeenupto.data.repository;
 
 
+import com.dancing_koala.whathaveyoubeenupto.application.utils.DateTimeUtils;
 import com.dancing_koala.whathaveyoubeenupto.data.dao.DaoSession;
 import com.dancing_koala.whathaveyoubeenupto.data.dao.EntryEntity;
 import com.dancing_koala.whathaveyoubeenupto.data.dao.EntryEntityDao;
@@ -24,21 +25,50 @@ public class EntryRepository extends BaseRepository {
         mEntryDaoMapper = new EntryDaoMapper();
     }
 
-    public List<Entry> findAllEntriesOrderedByNameAsc() {
-        EntryEntityDao userDao = mDaoSession.getEntryEntityDao();
+    public List<Entry> findAllEntriesOrderedByDayDescAndCreatedAsc() {
+        EntryEntityDao entityDao = mDaoSession.getEntryEntityDao();
 
-        List<EntryEntity> userEntities = userDao
+        List<EntryEntity> userEntities = entityDao
                 .queryBuilder()
-                .orderDesc(EntryEntityDao.Properties.Created)
+                .orderDesc(EntryEntityDao.Properties.DayOfYear)
+                .orderAsc(EntryEntityDao.Properties.Created)
                 .list();
 
         return mEntryDaoMapper.entitiesToModels(userEntities);
     }
 
-    private Entry findEntryByProperty(Property prop, Object propValue) {
-        EntryEntityDao userDao = mDaoSession.getEntryEntityDao();
+    public List<Entry> findActiveEntriesOrderedDayDescCreatedAsc() {
+        EntryEntityDao entityDao = mDaoSession.getEntryEntityDao();
 
-        List<EntryEntity> userEntities = userDao
+        List<EntryEntity> userEntities = entityDao
+                .queryBuilder()
+                .where(EntryEntityDao.Properties.Archived.isNull())
+                .orderDesc(EntryEntityDao.Properties.DayOfYear)
+                .orderAsc(EntryEntityDao.Properties.Created)
+                .list();
+
+        return mEntryDaoMapper.entitiesToModels(userEntities);
+    }
+
+    public boolean saveEntry(Entry entry) {
+        EntryEntityDao entityDao = mDaoSession.getEntryEntityDao();
+
+        long created = entry.getCreated() > 0L ? entry.getCreated() : System.currentTimeMillis();
+
+        EntryEntity entityToSave = mEntryDaoMapper.modelToEntity(entry);
+        entityToSave.setId(null);
+        entityToSave.setCreated(created);
+        entityToSave.setDayOfYear(DateTimeUtils.getDatabaseDateFromTimestamp(created));
+
+        long result = entityDao.insert(entityToSave);
+
+        return result != -1;
+    }
+
+    private Entry findEntryByProperty(Property prop, Object propValue) {
+        EntryEntityDao entityDao = mDaoSession.getEntryEntityDao();
+
+        List<EntryEntity> userEntities = entityDao
                 .queryBuilder()
                 .where(prop.eq(propValue))
                 .list();
