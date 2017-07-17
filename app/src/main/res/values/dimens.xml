@@ -7,10 +7,16 @@
     <dimen name="SettingCardview.Padding">8dp</dimen>
     <dimen name="SettingCardview.Spacing">8dp</dimen>
 
+    <dimen name="FAB.Normal.Size">56dp</dimen>
+    <dimen name="FAB.Normal.Margin">16dp</dimen>
+    <dimen name="FAB.Mini.Size">40dp</dimen>
+
+
     <dimen name="DayToggleButton.Size">36dp</dimen>
 
     <dimen name="List.Item.Simple.Height">48dp</dimen>
     <dimen name="List.Item.Simple.Padding.H">16dp</dimen>
+    <dimen name="List.Item.Simple.Padding.V">16dp</dimen>
     <dimen name="List.Item.Simple.WithActions.SecondaryAction.Size">32dp</dimen>
     <dimen name="List.Item.Simple.WithActions.SecondaryAction.Padding">4dp</dimen>
 
