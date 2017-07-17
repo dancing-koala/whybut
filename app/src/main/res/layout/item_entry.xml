@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/entry_date"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/List.Item.Simple.Height"
+        android:background="@color/colorGrayLight"
+        android:gravity="center_vertical"
+        android:paddingLeft="@dimen/List.Item.Simple.Padding.H"
+        android:paddingRight="@dimen/List.Item.Simple.Padding.H"
+        android:textColor="@color/colorFontPrimary"
+        android:textStyle="bold" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:minHeight="@dimen/List.Item.Simple.Height"
+        android:paddingBottom="@dimen/List.Item.Simple.Padding.V"
+        android:paddingLeft="@dimen/List.Item.Simple.Padding.H"
+        android:paddingRight="@dimen/List.Item.Simple.Padding.H"
+        android:paddingTop="@dimen/List.Item.Simple.Padding.V">
+
+        <TextView
+            android:id="@+id/entry_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginRight="8dp"
+            android:layout_toLeftOf="@+id/entry_time"
+            android:text="Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem ipsum dolor sit amet em dolor in respum"
+            android:textColor="@color/colorFontPrimary" />
+
+        <TextView
+            android:id="@+id/entry_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignTop="@+id/entry_content"
+            android:text="09:05" />
+
+    </RelativeLayout>
+
+</LinearLayout>
