@@ -9,14 +9,16 @@ import java.util.Arrays;
 public class Entry extends BaseModel {
 
     private String mContent;
-
-    private Long mArchived;
+    private String mDayOfYear;
 
     private int[] mTagIds;
+
+    private Long mArchived;
 
     public Entry(long id, String content) {
         super(id);
         mContent = content;
+        mCreated = -1L;
     }
 
     public String getContent() {
@@ -43,6 +45,14 @@ public class Entry extends BaseModel {
         mTagIds = tagIds;
     }
 
+    public String getDayOfYear() {
+        return mDayOfYear;
+    }
+
+    public void setDayOfYear(String dayOfYear) {
+        mDayOfYear = dayOfYear;
+    }
+
     @Override
     public String toString() {
         return "Entry{" +
@@ -53,4 +63,6 @@ public class Entry extends BaseModel {
                 ", mTagIds=" + Arrays.toString(mTagIds) +
                 '}';
     }
+
+
 }
