@@ -27,8 +27,6 @@ public class EntryDaoMapperTest {
 
         Long id = 1L;
         String content = "Lorem Ipsum Dolor Sit Amet";
-        String tagIdsJson = "[1,1,2,3,5,8,12,21]";
-        int[] tagIdsArray = new int[]{1, 1, 2, 3, 5, 8, 12, 21};
         long created = System.currentTimeMillis();
         Long archived = created + 2000L;
         String dayOfYear = "2017-07-16";
@@ -37,7 +35,6 @@ public class EntryDaoMapperTest {
         EntryEntity entity = new EntryEntity(
                 id,
                 content,
-                tagIdsJson,
                 dayOfYear,
                 created,
                 archived
@@ -48,7 +45,6 @@ public class EntryDaoMapperTest {
         assertTrue(id == model.getId());
         assertEquals(content, model.getContent());
         assertEquals(dayOfYear, model.getDayOfYear());
-        assertArrayEquals(tagIdsArray, model.getTagIds());
         assertTrue(created == model.getCreated());
         assertTrue(archived == model.getArchived().longValue());
     }
@@ -57,14 +53,11 @@ public class EntryDaoMapperTest {
     public void modelToEntity() throws Exception {
         Long id = 1L;
         String content = "Lorem Ipsum Dolor Sit Amet";
-        String tagIdsJson = "[1,1,2,3,5,8,12,21]";
-        int[] tagIdsArray = new int[]{1, 1, 2, 3, 5, 8, 12, 21};
         long created = System.currentTimeMillis();
         Long archived = created + 2000L;
 
 
         Entry model = new Entry(id, content);
-        model.setTagIds(tagIdsArray);
         model.setCreated(created);
         model.setArchived(archived);
 
@@ -72,7 +65,6 @@ public class EntryDaoMapperTest {
 
         assertTrue(id == entity.getId().longValue());
         assertEquals(content, entity.getContent());
-        assertEquals(tagIdsJson, entity.getTagIds());
         assertTrue(created == entity.getCreated());
         assertTrue(archived == entity.getArchived().longValue());
     }
