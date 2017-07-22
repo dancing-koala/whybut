@@ -69,11 +69,12 @@ public class EntryDaoMapper extends BaseMapper<Entry, EntryEntity> {
     }
 
     private static String javaIntArrayToJson(int[] intArray) throws JSONException {
-
         JSONArray jsonArray = new JSONArray();
 
-        for (int val : intArray) {
-            jsonArray.put(val);
+        if (intArray != null) {
+            for (int val : intArray) {
+                jsonArray.put(val);
+            }
         }
 
         return jsonArray.toString();

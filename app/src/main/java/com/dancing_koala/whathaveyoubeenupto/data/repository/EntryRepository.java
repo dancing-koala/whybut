@@ -50,7 +50,7 @@ public class EntryRepository extends BaseRepository {
         return mEntryDaoMapper.entitiesToModels(userEntities);
     }
 
-    public boolean saveEntry(Entry entry) {
+    public long createEntry(Entry entry) {
         EntryEntityDao entityDao = mDaoSession.getEntryEntityDao();
 
         long created = entry.getCreated() > 0L ? entry.getCreated() : System.currentTimeMillis();
@@ -60,9 +60,7 @@ public class EntryRepository extends BaseRepository {
         entityToSave.setCreated(created);
         entityToSave.setDayOfYear(DateTimeUtils.getDatabaseDateFromTimestamp(created));
 
-        long result = entityDao.insert(entityToSave);
-
-        return result != -1;
+        return entityDao.insert(entityToSave);
     }
 
     private Entry findEntryByProperty(Property prop, Object propValue) {
