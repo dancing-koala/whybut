@@ -92,8 +92,6 @@ public class EntryListActivity extends AppCompatActivity implements IEntryListVi
         for (int i = 0; i < 150; i++) {
             Entry entry = new Entry(i, contents[random.nextInt(contents.length)]);
             entry.setCreated(now);
-            entry.setTagIds(new int[0]);
-
             now -= 4 * 74 * 60 * 1000;
 
             tmp.add(entry);

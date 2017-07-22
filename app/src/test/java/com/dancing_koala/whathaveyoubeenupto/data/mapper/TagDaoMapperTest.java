@@ -1,8 +1,5 @@
 package com.dancing_koala.whathaveyoubeenupto.data.mapper;
 
-import com.dancing_koala.whathaveyoubeenupto.data.dao.TagEntity;
-import com.dancing_koala.whathaveyoubeenupto.data.model.Tag;
-
 import org.junit.Before;
 import org.junit.Test;
 

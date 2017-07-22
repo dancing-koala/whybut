@@ -18,8 +18,6 @@ public class EntryEntity {
     @NotNull
     private String content;
 
-    private String tagIds;
-
     // This property is mainly here to ease grouping and ordering by day
     private String dayOfYear;
 
@@ -27,12 +25,11 @@ public class EntryEntity {
 
     private Long archived;
 
-    @Generated(hash = 980247071)
-    public EntryEntity(Long id, @NotNull String content, String tagIds,
-            String dayOfYear, long created, Long archived) {
+    @Generated(hash = 1716535574)
+    public EntryEntity(Long id, @NotNull String content, String dayOfYear,
+            long created, Long archived) {
         this.id = id;
         this.content = content;
-        this.tagIds = tagIds;
         this.dayOfYear = dayOfYear;
         this.created = created;
         this.archived = archived;
@@ -56,14 +53,6 @@ public class EntryEntity {
 
     public void setContent(String content) {
         this.content = content;
-    }
-
-    public String getTagIds() {
-        return this.tagIds;
-    }
-
-    public void setTagIds(String tagIds) {
-        this.tagIds = tagIds;
     }
 
     public long getCreated() {

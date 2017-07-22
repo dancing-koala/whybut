@@ -1,7 +1,5 @@
 package com.dancing_koala.whathaveyoubeenupto.data.model;
 
-import java.util.Arrays;
-
 /**
  * Created by dancing_koala on 08/07/17.
  */
@@ -10,8 +8,6 @@ public class Entry extends BaseModel {
 
     private String mContent;
     private String mDayOfYear;
-
-    private int[] mTagIds;
 
     private Long mArchived;
 
@@ -37,14 +33,6 @@ public class Entry extends BaseModel {
         mArchived = archived;
     }
 
-    public int[] getTagIds() {
-        return mTagIds;
-    }
-
-    public void setTagIds(int[] tagIds) {
-        mTagIds = tagIds;
-    }
-
     public String getDayOfYear() {
         return mDayOfYear;
     }
@@ -60,7 +48,6 @@ public class Entry extends BaseModel {
                 ", mContent='" + mContent + '\'' +
                 ", mCreated=" + mCreated +
                 ", mArchived=" + mArchived +
-                ", mTagIds=" + Arrays.toString(mTagIds) +
                 '}';
     }
 
