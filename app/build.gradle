@@ -1,8 +1,8 @@
 apply plugin: 'com.android.application'
 apply plugin: 'org.greenrobot.greendao'
 
-def MAJOR_VERSION = 1
-def MINOR_VERSION = 0
+def MAJOR_VERSION = 0
+def MINOR_VERSION = 1
 def PATCH_VERSION = 0
 
 android {
