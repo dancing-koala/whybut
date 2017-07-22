@@ -24,6 +24,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".entry.EntryAddActivity"
+            android:theme="@style/AppTheme.Dialog.NoTitle" />
     </application>
 
 </manifest>

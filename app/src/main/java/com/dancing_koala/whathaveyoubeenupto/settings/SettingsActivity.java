@@ -49,7 +49,7 @@ public class SettingsActivity extends AppCompatActivity implements ISettingsEdit
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
-        setTitle(getString(R.string.settings_activity_title));
+        setTitle(getString(R.string.title_activity_settings));
 
         ButterKnife.bind(this);
 
