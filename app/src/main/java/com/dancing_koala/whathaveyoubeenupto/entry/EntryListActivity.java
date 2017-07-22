@@ -8,7 +8,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.dancing_koala.whathaveyoubeenupto.R;
 import com.dancing_koala.whathaveyoubeenupto.application.WhybutApp;
@@ -29,6 +28,8 @@ import butterknife.ButterKnife;
 
 public class EntryListActivity extends AppCompatActivity implements IEntryListView {
 
+    public static final int ENTRY_ADD_REQUEST_CODE = 200;
+
     @BindView(R.id.entry_list)
     public ListView mEntryListView;
     @BindView(R.id.add_entry_fab)
@@ -36,7 +37,6 @@ public class EntryListActivity extends AppCompatActivity implements IEntryListVi
 
     private EntryListAdapter mAdapter;
     private EntryListPresenter mPresenter;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +51,7 @@ public class EntryListActivity extends AppCompatActivity implements IEntryListVi
         mAddEntryFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(EntryListActivity.this, "TODO :)", Toast.LENGTH_SHORT).show();
+                openEntryAddDialog();
             }
         });
 
@@ -69,6 +69,11 @@ public class EntryListActivity extends AppCompatActivity implements IEntryListVi
     protected void onStop() {
         super.onStop();
         mPresenter.detachView();
+    }
+
+    private void openEntryAddDialog() {
+        Intent entryAddIntent = new Intent(this, EntryAddActivity.class);
+        startActivityForResult(entryAddIntent, ENTRY_ADD_REQUEST_CODE);
     }
 
     // TODO remove this dev-only method
@@ -96,14 +101,13 @@ public class EntryListActivity extends AppCompatActivity implements IEntryListVi
 
         EntryRepository repository = new EntryRepository(((WhybutApp) getApplication()).getDaoSession());
         for (Entry entry : tmp) {
-            repository.saveEntry(entry);
+            repository.createEntry(entry);
         }
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_entry_list, menu);
-
         return true;
     }
 
@@ -124,12 +128,21 @@ public class EntryListActivity extends AppCompatActivity implements IEntryListVi
                 break;
         }
 
-
         return super.onOptionsItemSelected(item);
     }
 
     @Override
     public void displayEntries(List<Entry> entryList) {
         mAdapter.updateEntryList(EntryListAdapterMapper.modelsToItems(entryList));
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(requestCode == ENTRY_ADD_REQUEST_CODE && resultCode == EntryAddActivity.RESULT_ENTRY_ADDED) {
+            mPresenter.loadActiveEntries();
+            return;
+        }
+
+        super.onActivityResult(requestCode, resultCode, data);
     }
 }
