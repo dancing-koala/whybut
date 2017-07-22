@@ -1,0 +1,60 @@
+<resources>
+
+    <style name="AppTheme.Settings.DayToggleButton" parent="">
+        <item name="android:layout_width">@dimen/DayToggleButton.Size</item>
+        <item name="android:layout_height">@dimen/DayToggleButton.Size</item>
+        <item name="android:background">@drawable/day_toggle_btn</item>
+        <item name="android:layout_marginLeft">2dp</item>
+        <item name="android:layout_marginRight">2dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textColor">@drawable/day_toggle_btn_textcolor</item>
+    </style>
+
+    <style name="AppTheme.Settings.Reminders.Item" parent="">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:minHeight">@dimen/List.Item.Simple.Height</item>
+        <item name="android:paddingLeft">@dimen/List.Item.Simple.Padding.H</item>
+        <item name="android:paddingRight">@dimen/List.Item.Simple.Padding.H</item>
+    </style>
+
+    <style name="AppTheme.Settings.Reminders.Item.Switch" parent="">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:layout_alignParentLeft">true</item>
+    </style>
+
+    <style name="AppTheme.Settings.Reminders.Item.Label" parent="">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">56dp</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:textColor">@color/colorFontPrimary</item>
+    </style>
+
+    <style name="AppTheme.Settings.Reminders.Item.Time" parent="">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:layout_marginLeft">8dp</item>
+        <item name="android:text">@string/time_not_defined</item>
+        <item name="android:textColor">@color/colorPrimaryDark</item>
+    </style>
+
+    <style name="AppTheme.Settings.Reminders.Item.TimeEdit" parent="">
+        <item name="android:layout_width">@dimen/List.Item.Simple.WithActions.SecondaryAction.Size
+        </item>
+        <item name="android:layout_height">
+            @dimen/List.Item.Simple.WithActions.SecondaryAction.Size
+        </item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:padding">@dimen/List.Item.Simple.WithActions.SecondaryAction.Padding
+        </item>
+        <item name="android:src">@drawable/ic_clock</item>
+        <item name="android:tint">@android:color/darker_gray</item>
+    </style>
+
+</resources>

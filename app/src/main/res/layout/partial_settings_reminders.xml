@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.DialogTitle
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/SettingCardview.Title.Margin.Bottom"
+        android:text="@string/settings_title_reminders" />
+
+    <RelativeLayout style="@style/AppTheme.Settings.Reminders.Item">
+
+        <Switch
+            android:id="@+id/reminder_1_switch"
+            style="@style/AppTheme.Settings.Reminders.Item.Switch" />
+
+        <TextView
+            android:id="@+id/reminder_1_label"
+            style="@style/AppTheme.Settings.Reminders.Item.Label"
+            android:text="@string/reminder_1_label" />
+
+        <TextView
+            android:id="@+id/reminder_1_time"
+            style="@style/AppTheme.Settings.Reminders.Item.Time"
+            android:layout_toRightOf="@id/reminder_1_label" />
+
+        <ImageView
+            android:id="@+id/reminder_1_time_btn"
+            style="@style/AppTheme.Settings.Reminders.Item.TimeEdit" />
+    </RelativeLayout>
+
+    <RelativeLayout style="@style/AppTheme.Settings.Reminders.Item">
+
+        <Switch
+            android:id="@+id/reminder_2_switch"
+            style="@style/AppTheme.Settings.Reminders.Item.Switch" />
+
+        <TextView
+            android:id="@+id/reminder_2_label"
+            style="@style/AppTheme.Settings.Reminders.Item.Label"
+            android:text="@string/reminder_2_label" />
+
+        <TextView
+            android:id="@+id/reminder_2_time"
+            style="@style/AppTheme.Settings.Reminders.Item.Time"
+            android:layout_toRightOf="@id/reminder_2_label" />
+
+        <ImageView
+            android:id="@+id/reminder_2_time_btn"
+            style="@style/AppTheme.Settings.Reminders.Item.TimeEdit" />
+    </RelativeLayout>
+
+    <RelativeLayout style="@style/AppTheme.Settings.Reminders.Item">
+
+        <Switch
+            android:id="@+id/reminder_3_switch"
+            style="@style/AppTheme.Settings.Reminders.Item.Switch" />
+
+        <TextView
+            android:id="@+id/reminder_3_label"
+            style="@style/AppTheme.Settings.Reminders.Item.Label"
+            android:text="@string/reminder_3_label" />
+
+        <TextView
+            android:id="@+id/reminder_3_time"
+            style="@style/AppTheme.Settings.Reminders.Item.Time"
+            android:layout_toRightOf="@id/reminder_3_label" />
+
+        <ImageView
+            android:id="@+id/reminder_3_time_btn"
+            style="@style/AppTheme.Settings.Reminders.Item.TimeEdit" />
+    </RelativeLayout>
+</LinearLayout>
