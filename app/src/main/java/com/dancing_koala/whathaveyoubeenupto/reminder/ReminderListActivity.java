@@ -158,12 +158,6 @@ public class ReminderListActivity extends AppCompatActivity implements IReminder
 
     private void initTimePickerDialog() {
         mTimePickerDialog = new RadialTimePickerDialogFragment()
-                .setOnTimeSetListener(new RadialTimePickerDialogFragment.OnTimeSetListener() {
-                    @Override
-                    public void onTimeSet(RadialTimePickerDialogFragment dialog, int hourOfDay, int minute) {
-                        Toast.makeText(ReminderListActivity.this, hourOfDay + ":" + minute, Toast.LENGTH_SHORT).show();
-                    }
-                })
                 .setThemeCustom(R.style.BetterPickersDialogs)
                 .setDoneText(getString(R.string.ok))
                 .setCancelText(getString(R.string.cancel));

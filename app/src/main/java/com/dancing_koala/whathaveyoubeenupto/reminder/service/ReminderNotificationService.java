@@ -11,6 +11,8 @@ import com.dancing_koala.whathaveyoubeenupto.R;
 import com.dancing_koala.whathaveyoubeenupto.entry.EntryAddActivity;
 import com.dancing_koala.whathaveyoubeenupto.reminder.receiver.ReminderReceiver;
 
+import java.util.Random;
+
 /**
  * Created by dancing_koala on 23/07/17.
  */
@@ -30,9 +32,11 @@ public class ReminderNotificationService extends IntentService {
         }
 
         long id = intent.getLongExtra(ReminderReceiver.EXTRA_REMINDER_ID, -1L);
-        String title = getString(R.string.app_name);
 
-        sendNotification(id, title);
+        String[] titles = getResources().getStringArray(R.array.notification_heroic_acts);
+        int randomIndex = new Random().nextInt(titles.length);
+
+        sendNotification(id, titles[randomIndex]);
 
         ReminderReceiver.completeWakefulIntent(intent);
     }

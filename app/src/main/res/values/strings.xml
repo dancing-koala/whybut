@@ -6,11 +6,10 @@
     <string name="title_activity_entry_add">What have you been up to?</string>
 
     <!--General-->
-    <string name="ok">OK</string>
+    <string name="ok">Ok</string>
     <string name="cancel">Cancel</string>
     <string name="save">Save</string>
-
-    <string name="input_content_hint">Destroying the death star…\nSaving the galaxy…\nDrinking coffee…</string>
+    <string name="input_content_hint">Saving the galaxy, drinking coffee…</string>
 
     <!--Menus-->
     <string name="menu_item_reminders">Reminders</string>
@@ -18,7 +17,23 @@
     <string name="menu_item_quit">Quit</string>
 
     <!--Notifications-->
-    <string name="notification_content">Tell me about what you\'ve been up to!</string>
+    <string name="notification_content">Tell me about it!</string>
+    <string-array name="notification_heroic_acts">
+        <item>Saved the galaxy?</item>
+        <item>Saved the galaxy? Again?</item>
+        <item>Finally wrote your own book?</item>
+        <item>Passed your final exam?</item>
+        <item>Eventually caught\'em all?</item>
+        <item>Broke the coffee drinking world record?</item>
+        <item>Managed to get out of bed?</item>
+        <item>Avoided your ex successfully?</item>
+        <item>Got a royal flush playing poker?</item>
+        <item>Won a scrabble game?</item>
+        <item>Managed to avoid the last Windows update?</item>
+        <item>Worked too much?</item>
+        <item>Smashed a terrifying spider?</item>
+        <item>Successfully avoided Trump\'s tweets?</item>
+    </string-array>
 
     <!--Settings related-->
     <string name="preferences_filename">com.dancing_koala.whathaveyoubeenupto.PREFERENCES_FILE</string>
@@ -45,9 +60,4 @@
     <string name="dow_friday_abbr">F</string>
     <string name="dow_saturday_abbr">Sa</string>
     <string name="dow_sunday_abbr">Su</string>
-
-    <!--Reminders-->
-    <string name="reminder_1_label">Reminder #1</string>
-    <string name="reminder_2_label">Reminder #2</string>
-    <string name="reminder_3_label">Reminder #3</string>
 </resources>

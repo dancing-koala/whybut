@@ -9,44 +9,37 @@
     android:orientation="horizontal">
 
     <ToggleButton
-        android:id="@+id/weekdday_toggle_0"
         style="@style/AppTheme.Settings.DayToggleButton"
         android:layout_marginLeft="0dp"
         android:textOff="@string/dow_monday_abbr"
         android:textOn="@string/dow_monday_abbr" />
 
     <ToggleButton
-        android:id="@+id/weekdday_toggle_1"
         style="@style/AppTheme.Settings.DayToggleButton"
         android:textOff="@string/dow_tuesday_abbr"
         android:textOn="@string/dow_tuesday_abbr" />
 
     <ToggleButton
-        android:id="@+id/weekdday_toggle_2"
         style="@style/AppTheme.Settings.DayToggleButton"
         android:textOff="@string/dow_wednesday_abbr"
         android:textOn="@string/dow_wednesday_abbr" />
 
     <ToggleButton
-        android:id="@+id/weekdday_toggle_3"
         style="@style/AppTheme.Settings.DayToggleButton"
         android:textOff="@string/dow_thursday_abbr"
         android:textOn="@string/dow_thursday_abbr" />
 
     <ToggleButton
-        android:id="@+id/weekdday_toggle_4"
         style="@style/AppTheme.Settings.DayToggleButton"
         android:textOff="@string/dow_friday_abbr"
         android:textOn="@string/dow_friday_abbr" />
 
     <ToggleButton
-        android:id="@+id/weekdday_toggle_5"
         style="@style/AppTheme.Settings.DayToggleButton"
         android:textOff="@string/dow_saturday_abbr"
         android:textOn="@string/dow_saturday_abbr" />
 
     <ToggleButton
-        android:id="@+id/weekdday_toggle_6"
         style="@style/AppTheme.Settings.DayToggleButton"
         android:layout_marginRight="0dp"
         android:textOff="@string/dow_sunday_abbr"

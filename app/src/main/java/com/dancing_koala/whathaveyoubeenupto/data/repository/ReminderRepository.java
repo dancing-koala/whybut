@@ -13,15 +13,25 @@ import java.util.List;
 
 public class ReminderRepository extends BaseSettingsRepository implements IReminderRepository {
 
+    private static final int DEFAULT_REMINDER_COUNT = 3;
+    private static final int MIN_REMINDER_COUNT = 1;
+
+    private int mReminderCount;
+
     public ReminderRepository(SettingsManager settingsManager) {
+        this(settingsManager, DEFAULT_REMINDER_COUNT);
+    }
+
+    public ReminderRepository(SettingsManager settingsManager, int reminderCount) {
         super(settingsManager);
+        mReminderCount = reminderCount > MIN_REMINDER_COUNT ? reminderCount : MIN_REMINDER_COUNT;
     }
 
     @Override
     public List<Reminder> findAllReminders() {
         List<Reminder> reminderList = new ArrayList<>();
 
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < mReminderCount; i++) {
             Reminder reminder = new Reminder(i, mSettingsManager.getReminderTime(i));
             reminder.setEnabled(mSettingsManager.isReminderEnabled(i));
 
@@ -35,7 +45,7 @@ public class ReminderRepository extends BaseSettingsRepository implements IRemin
     public List<Reminder> findAllEnabledReminders() {
         List<Reminder> reminderList = new ArrayList<>();
 
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < mReminderCount; i++) {
             Reminder reminder = new Reminder(i, mSettingsManager.getReminderTime(i));
             reminder.setEnabled(mSettingsManager.isReminderEnabled(i));
 

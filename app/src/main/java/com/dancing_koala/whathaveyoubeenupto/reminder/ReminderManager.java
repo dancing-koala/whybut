@@ -17,6 +17,8 @@ import java.util.List;
 
 public class ReminderManager {
 
+    private static final long DAY_DURATION_IN_MILLIS = 24L * 60L * 60L* 1000L;
+
     private static final String REMINDER_ALARM_ACTION = "com.dancing_koala.whathaveyoubeenupto.reminder.action.REMINDER_ALARM";
 
     private AlarmManager mAlarmManager;
@@ -59,7 +61,7 @@ public class ReminderManager {
         if(targetMillis < System.currentTimeMillis()) {
             // If time of the reminder is already passed,
             // we add 24h to time to prevent being notified right away
-            targetMillis += 24L * 60L * 60L* 1000L;
+            targetMillis += DAY_DURATION_IN_MILLIS;
         }
 
         mAlarmManager.setRepeating(AlarmManager.RTC_WAKEUP, targetMillis, AlarmManager.INTERVAL_DAY, reminderIntent);
