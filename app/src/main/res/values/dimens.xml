@@ -19,6 +19,8 @@
     <dimen name="List.Item.Simple.WithActions.SecondaryAction.Size">32dp</dimen>
     <dimen name="List.Item.Simple.WithActions.SecondaryAction.Padding">4dp</dimen>
 
+    <dimen name="List.Item.Big.Height">72dp</dimen>
+
     <dimen name="Dialog.ContentArea.Padding">24dp</dimen>
     <dimen name="Dialog.Title.MarginBottom">20dp</dimen>
     <dimen name="Dialog.Title.PaddingBottom">8dp</dimen>
