@@ -11,7 +11,7 @@
         android:text="@string/settings_title_working_days" />
 
     <include
-        android:id="@+id/days_of_week_wrapper"
-        layout="@layout/partial_days_of_week_toggle" />
+        android:id="@+id/days_of_week_container"
+        layout="@layout/partial_weekdays_toggle" />
 
 </LinearLayout>

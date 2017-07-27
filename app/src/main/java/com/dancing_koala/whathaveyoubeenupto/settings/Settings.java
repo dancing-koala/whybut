@@ -17,22 +17,15 @@ public class Settings {
     public static final String DEFAULT_DAYS_OF_WEEK = "[1,1,1,1,1,0,0]";
 
     // Times
-    public static final String TIME_REMINDER_1 = "time_reminder_1";
-    public static final String TIME_REMINDER_2 = "time_reminder_2";
-    public static final String TIME_REMINDER_3 = "time_reminder_3";
+    public static final String REMINDER_TIME_TEMPLATE = "reminder_%d_time";
+    public static final String REMINDER_TIME_DEFAULT = "14:00";
+    public static final String REMINDER_ENABLED_TEMPLATE = "reminder_%d_enabled";
 
-    public static final String DEFAULT_TIME_REMINDER_1 = "08:00";
-    public static final String DEFAULT_TIME_REMINDER_2 = "13:00";
-    public static final String DEFAULT_TIME_REMINDER_3 = "18:00";
+    public static final boolean REMINDER_ENABLED_DEFAULT = false;
 
-    // Notifications
-    public static final String REMINDER_1_ENABLED = "reminder_1_enabled";
-    public static final String REMINDER_2_ENABLED = "reminder_2_enabled";
-    public static final String REMINDER_3_ENABLED = "reminder_3_enabled";
-
-    public static final boolean DEFAULT_REMINDER_1_ENABLED = true;
-    public static final boolean DEFAULT_REMINDER_2_ENABLED = true;
-    public static final boolean DEFAULT_REMINDER_3_ENABLED = true;
+    public static String getReminderKey(String template, long id) {
+        return String.format(template, id);
+    }
 
     public static boolean[] parseDaysOfWeek(String daysOfWeekJson) {
         boolean[] result = new boolean[7];

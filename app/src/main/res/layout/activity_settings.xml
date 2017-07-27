@@ -23,7 +23,7 @@
                 android:layout_height="wrap_content"
                 app:contentPadding="@dimen/SettingCardview.Padding">
 
-                <include layout="@layout/partial_settings_working_days" />
+                <include layout="@layout/partial_working_days" />
 
             </android.support.v7.widget.CardView>
 
@@ -33,7 +33,7 @@
                 android:layout_marginTop="@dimen/SettingCardview.Spacing"
                 app:contentPadding="@dimen/SettingCardview.Padding">
 
-                <include layout="@layout/partial_settings_reminders" />
+                <include layout="@layout/partial_reminders" />
 
             </android.support.v7.widget.CardView>
 

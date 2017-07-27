@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/List.Item.Simple.Height"
-    android:gravity="center_vertical"
+    android:layout_height="wrap_content"
+    android:paddingBottom="@dimen/List.Item.Simple.Padding.V"
+    android:paddingTop="@dimen/List.Item.Simple.Padding.V"
+    android:minHeight="@dimen/List.Item.Simple.Height"
+    android:gravity="center"
     android:orientation="horizontal">
 
     <ToggleButton
