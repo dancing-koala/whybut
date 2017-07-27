@@ -16,7 +16,7 @@ import java.util.List;
  * Created by dancing_koala on 08/07/17.
  */
 
-public class EntryRepository extends BaseRepository {
+public class EntryRepository extends BaseDaoRepository {
 
     private EntryDaoMapper mEntryDaoMapper;
 

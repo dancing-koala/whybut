@@ -7,13 +7,11 @@ import com.dancing_koala.whathaveyoubeenupto.data.dao.DaoSession;
  * Created by dancing_koala on 08/07/17.
  */
 
-public abstract class BaseRepository {
+public abstract class BaseDaoRepository {
 
     protected DaoSession mDaoSession;
 
-    public BaseRepository(DaoSession daoSession) {
+    public BaseDaoRepository(DaoSession daoSession) {
         mDaoSession = daoSession;
     }
-
-
 }
