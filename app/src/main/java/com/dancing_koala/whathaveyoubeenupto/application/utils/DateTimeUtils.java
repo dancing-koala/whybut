@@ -15,8 +15,8 @@ public class DateTimeUtils {
     private static SimpleDateFormat mDatabaseDateFormat;
     private static Calendar mCalendar;
 
-    public static void init(String format) {
-        mDateFormat = new SimpleDateFormat(format);
+    public static void init(String template) {
+        mDateFormat = new SimpleDateFormat(template);
         mDatabaseDateFormat = new SimpleDateFormat(DATABASE_DATE_TEMPLATE);
         mCalendar = Calendar.getInstance();
     }
@@ -36,10 +36,10 @@ public class DateTimeUtils {
     public static String getTimeFromTimestamp(long timestamp) {
         mCalendar.setTimeInMillis(timestamp);
 
-        int hours = mCalendar.get(Calendar.HOUR_OF_DAY);
-        int minutes = mCalendar.get(Calendar.MINUTE);
+        int hour = mCalendar.get(Calendar.HOUR_OF_DAY);
+        int minute = mCalendar.get(Calendar.MINUTE);
 
-        return formatTime(hours, minutes);
+        return formatTime(hour, minute);
     }
 
     public static boolean isToday(long timestamp) {
@@ -60,8 +60,7 @@ public class DateTimeUtils {
         return timestamp < today && timestamp >= yesterday;
     }
 
-
-    public static String formatTime(int hours, int minutes) {
-        return ((hours > 9) ? "" : "0") + hours + ":" + ((minutes > 9) ? "" : "0") + minutes;
+    public static String formatTime(int hour, int minute) {
+        return String.format("%02d:%02d", hour, minute);
     }
 }
