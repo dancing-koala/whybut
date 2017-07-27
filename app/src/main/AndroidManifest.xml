@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.dancing_koala.whathaveyoubeenupto">
 
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
     <application
         android:name=".application.WhybutApp"
         android:allowBackup="true"
@@ -10,23 +13,38 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".settings.SettingsActivity">
+
+        <activity android:name=".settings.SettingsActivity" />
+
+        <activity android:name=".entry.EntryListActivity">
+            <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".entry.EntryAddActivity"
+            android:theme="@style/AppTheme.Dialog.NoTitle" />
+
+        <activity android:name=".reminder.ReminderListActivity">
             <!--<intent-filter>-->
                 <!--<action android:name="android.intent.action.MAIN" />-->
 
                 <!--<category android:name="android.intent.category.LAUNCHER" />-->
             <!--</intent-filter>-->
         </activity>
-        <activity android:name=".entry.EntryListActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
+        <receiver android:name=".reminder.receiver.ReminderReceiver" />
+
+        <receiver android:name=".reminder.receiver.ReminderBootReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
-        </activity>
-        <activity
-            android:name=".entry.EntryAddActivity"
-            android:theme="@style/AppTheme.Dialog.NoTitle" />
+        </receiver>
+
+        <service android:name=".reminder.service.ReminderNotificationService" />
     </application>
 
 </manifest>
