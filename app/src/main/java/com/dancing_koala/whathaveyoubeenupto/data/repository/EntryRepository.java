@@ -76,7 +76,7 @@ public class EntryRepository extends BaseDaoRepository {
         entityDao.deleteAll();
     }
 
-    public void deleteAllEntriesOlderThan(long timestamp) {
+    public void deleteAllEntriesCreatedBefore(long timestamp) {
         EntryEntityDao entityDao = mDaoSession.getEntryEntityDao();
 
         DeleteQuery query = entityDao.queryBuilder()
