@@ -1,7 +1,5 @@
 package com.dancing_koala.whathaveyoubeenupto.settings;
 
-import android.util.Log;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 
@@ -10,18 +8,18 @@ import org.json.JSONException;
  */
 
 public class Settings {
-    public static final String WHYBUT_ENABLED = "whybut_enabled";
-    public static final boolean DEFAULT_WHYBUT_ENABLED = false;
+
+    public static final String ENTRY_LIFESPAN = "entry_lifespan";
+    public static final int DEFAULT_ENTRY_LIFESPAN = 14;
 
     public static final String DAYS_OF_WEEK = "days_of_week";
     public static final String DEFAULT_DAYS_OF_WEEK = "[1,1,1,1,1,0,0]";
 
-    // Times
     public static final String REMINDER_TIME_TEMPLATE = "reminder_%d_time";
-    public static final String REMINDER_TIME_DEFAULT = "14:00";
-    public static final String REMINDER_ENABLED_TEMPLATE = "reminder_%d_enabled";
+    public static final String DEFAULT_REMINDER_TIME = "14:00";
 
-    public static final boolean REMINDER_ENABLED_DEFAULT = false;
+    public static final String REMINDER_ENABLED_TEMPLATE = "reminder_%d_enabled";
+    public static final boolean DEFAULT_REMINDER_ENABLED = false;
 
     public static String getReminderKey(String template, long id) {
         return String.format(template, id);

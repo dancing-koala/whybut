@@ -44,7 +44,7 @@ public class EntryListPresenter implements IEntryListPresenter {
         Observable.create(new ObservableOnSubscribe<List<Entry>>() {
             @Override
             public void subscribe(ObservableEmitter<List<Entry>> e) throws Exception {
-                e.onNext(mRepository.findActiveEntriesOrderedDayDescCreatedAsc());
+                e.onNext(mRepository.findAllActiveEntries());
                 e.onComplete();
             }
         }).subscribeOn(Schedulers.newThread())
