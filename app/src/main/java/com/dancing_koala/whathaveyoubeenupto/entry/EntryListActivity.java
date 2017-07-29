@@ -44,6 +44,7 @@ public class EntryListActivity extends AppCompatActivity implements IEntryListVi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_entry_list);
+        setTitle(getString(R.string.title_activity_entry_list));
 
         ButterKnife.bind(this);
 
