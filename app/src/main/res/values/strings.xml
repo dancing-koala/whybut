@@ -17,6 +17,7 @@
     <string name="version_format">Version %s</string>
     <string name="days">days</string>
     <string name="danger">Danger</string>
+    <string name="no_entry">No entry to display</string>
 
     <!--Menus-->
     <string name="menu_item_reminders">Reminders</string>
