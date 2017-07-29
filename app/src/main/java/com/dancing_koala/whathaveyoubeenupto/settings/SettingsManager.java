@@ -2,7 +2,6 @@ package com.dancing_koala.whathaveyoubeenupto.settings;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.widget.SeekBar;
 
 /**
  * Created by dancing_koala on 14/07/17.
@@ -45,6 +44,16 @@ public class SettingsManager {
         editor.commit();
     }
 
+    private int readSetting(String settingName, int defaultValue) {
+        return mSharedPreferences.getInt(settingName, defaultValue);
+    }
+
+    private void editSetting(String settingName, int value) {
+        SharedPreferences.Editor editor = mSharedPreferences.edit();
+        editor.putInt(settingName, value);
+        editor.commit();
+    }
+
     public boolean[] getWeekDays() {
         return Settings.parseDaysOfWeek(readSetting(Settings.DAYS_OF_WEEK, Settings.DEFAULT_DAYS_OF_WEEK));
     }
@@ -54,7 +63,7 @@ public class SettingsManager {
     }
 
     public String getReminderTime(long id) {
-        return readSetting(Settings.getReminderKey(Settings.REMINDER_TIME_TEMPLATE, id), Settings.REMINDER_TIME_DEFAULT);
+        return readSetting(Settings.getReminderKey(Settings.REMINDER_TIME_TEMPLATE, id), Settings.DEFAULT_REMINDER_TIME);
     }
 
     public void setReminderTime(long id, String time) {
@@ -62,10 +71,18 @@ public class SettingsManager {
     }
 
     public boolean isReminderEnabled(long id) {
-        return readSetting(Settings.getReminderKey(Settings.REMINDER_ENABLED_TEMPLATE, id), Settings.REMINDER_ENABLED_DEFAULT);
+        return readSetting(Settings.getReminderKey(Settings.REMINDER_ENABLED_TEMPLATE, id), Settings.DEFAULT_REMINDER_ENABLED);
     }
 
     public void setReminderEnabled(long id, boolean enabled) {
         editSetting(Settings.getReminderKey(Settings.REMINDER_ENABLED_TEMPLATE, id), enabled);
+    }
+
+    public int getEntryLifespan() {
+        return readSetting(Settings.ENTRY_LIFESPAN, Settings.DEFAULT_ENTRY_LIFESPAN);
+    }
+
+    public void setEntryLifespan(int lifespan) {
+        editSetting(Settings.ENTRY_LIFESPAN, lifespan);
     }
 }
