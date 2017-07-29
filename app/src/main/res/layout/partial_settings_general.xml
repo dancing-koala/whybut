@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.DialogTitle
+        android:id="@+id/tasks_section_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/SettingCardview.Title.Margin.Bottom"
+        android:text="@string/settings_title_general" />
+
+    <TextView
+        android:id="@+id/delete_task_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/delete_task_select"
+        android:layout_alignTop="@+id/delete_task_select"
+        android:layout_marginRight="@dimen/Base.Margin.Mini"
+        android:gravity="center_vertical"
+        android:text="@string/setting_entry_lifespan_label"
+        android:textColor="@color/colorFontPrimary" />
+
+    <Spinner
+        android:id="@+id/delete_task_select"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tasks_section_title"
+        android:layout_marginRight="@dimen/Base.Margin.Mini"
+        android:layout_toRightOf="@id/delete_task_label" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/delete_task_select"
+        android:layout_alignTop="@+id/delete_task_select"
+        android:layout_toRightOf="@+id/delete_task_select"
+        android:gravity="center_vertical"
+        android:text="@string/days"
+        android:textColor="@color/colorFontPrimary" />
+
+</RelativeLayout>

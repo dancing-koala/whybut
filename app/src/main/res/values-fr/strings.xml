@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">What\'s up ?</string>
+    <string name="app_name_no_w">hat\'s up ?</string>
+    <string name="title_activity_settings">Paramètres</string>
+    <string name="title_activity_reminder_list">Rappels</string>
+    <string name="title_activity_entry_list">Quoi de neuf ?</string>
+    <string name="title_activity_entry_add">Quoi de beau ?</string>
+
+    <!--General-->
+    <string name="ok">OK</string>
+    <string name="do_it">Allons-y!</string>
+    <string name="all_done">C\'est fait!</string>
+    <string name="cancel">Annuler</string>
+    <string name="save">Enregistrer</string>
+    <string name="input_content_hint">J\'ai sauvé la galaxie, bu du café…</string>
+    <string name="dunno_smiley">¯\\_(ツ)_/¯</string>
+    <string name="version_format">Version %s</string>
+    <string name="days">jours</string>
+    <string name="danger">Danger</string>
+    <string name="no_entry">Pas d\'entrée à afficher</string>
+
+    <!--Menus-->
+    <string name="menu_item_reminders">Rappels</string>
+    <string name="menu_item_settings">Paramètres</string>
+    <string name="menu_item_quit">Quitter</string>
+
+    <!--Settings related-->
+    <string name="preferences_filename">com.dancing_koala.whathaveyoubeenupto.PREFERENCES_FILE</string>
+    <string name="settings_title_working_days">Jours travaillés</string>
+    <string name="settings_title_reminders">Rappels</string>
+    <string name="settings_title_danger_zone">Zone de danger</string>
+    <string name="settings_title_general">Général</string>
+    <string name="setting_entry_lifespan_label">Effacer une entrée après</string>
+    <string name="settings_delete_all_label">Tout effacer</string>
+    <string name="settings_delete_all_confirm_msg">Souhaitez-vous réellement effacer toutes les entrées ?</string>
+
+    <!--DateTime related-->
+    <string name="default_date_format">dd/MM/yyyy</string>
+    <string name="time_not_defined">88:88</string>
+
+    <!--Days of week-->
+    <string name="dow_monday">Lundi</string>
+    <string name="dow_tuesday">Mardi</string>
+    <string name="dow_wednesday">Mercredi</string>
+    <string name="dow_thursday">Jeudi</string>
+    <string name="dow_friday">Vendredi</string>
+    <string name="dow_saturday">Samedi</string>
+    <string name="dow_sunday">Dimanche</string>
+
+    <string name="dow_monday_abbr">L</string>
+    <string name="dow_tuesday_abbr">Ma</string>
+    <string name="dow_wednesday_abbr">Me</string>
+    <string name="dow_thursday_abbr">J</string>
+    <string name="dow_friday_abbr">V</string>
+    <string name="dow_saturday_abbr">S</string>
+    <string name="dow_sunday_abbr">D</string>
+    <string name="label_today">Aujourd\'hui</string>
+    <string name="label_yesterday">Hier</string>
+
+    <!--Notifications-->
+    <string name="notification_content">Parle m\'en!</string>
+    <string-array name="notification_heroic_acts">
+        <item>Tu as sauvé la galaxie?</item>
+        <item>Tu as sauvé la galaxie? Encore?</item>
+        <item>Tu as fini par écrire ton propre livre?</item>
+        <item>Tu as réussi tes exams?</item>
+        <item>Tu les as enfin tous attrapés?</item>
+        <item>Tu as battu le record du monde de buvage de café?</item>
+        <item>Tu as réussi à sortir du lit?</item>
+        <item>Tu as obtenu une royal flush au poker?</item>
+        <item>Tu as gagné une partie de Scrabble?</item>
+        <item>Tu as réussi à éviter la dernière update de Windows?</item>
+        <item>Tu as trop travaillé?</item>
+        <item>Tu as triomphé d\'une terrifiante araignée?</item>
+        <item>Tu as trouvé une trace de vie sur Mars?</item>
+    </string-array>
+</resources>

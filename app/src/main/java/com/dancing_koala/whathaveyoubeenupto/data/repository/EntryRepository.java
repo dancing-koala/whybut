@@ -9,6 +9,7 @@ import com.dancing_koala.whathaveyoubeenupto.data.mapper.EntryDaoMapper;
 import com.dancing_koala.whathaveyoubeenupto.data.model.Entry;
 
 import org.greenrobot.greendao.Property;
+import org.greenrobot.greendao.query.DeleteQuery;
 
 import java.util.List;
 
@@ -16,7 +17,7 @@ import java.util.List;
  * Created by dancing_koala on 08/07/17.
  */
 
-public class EntryRepository extends BaseRepository {
+public class EntryRepository extends BaseDaoRepository {
 
     private EntryDaoMapper mEntryDaoMapper;
 
@@ -25,19 +26,7 @@ public class EntryRepository extends BaseRepository {
         mEntryDaoMapper = new EntryDaoMapper();
     }
 
-    public List<Entry> findAllEntriesOrderedByDayDescAndCreatedAsc() {
-        EntryEntityDao entityDao = mDaoSession.getEntryEntityDao();
-
-        List<EntryEntity> userEntities = entityDao
-                .queryBuilder()
-                .orderDesc(EntryEntityDao.Properties.DayOfYear)
-                .orderAsc(EntryEntityDao.Properties.Created)
-                .list();
-
-        return mEntryDaoMapper.entitiesToModels(userEntities);
-    }
-
-    public List<Entry> findActiveEntriesOrderedDayDescCreatedAsc() {
+    public List<Entry> findAllActiveEntries() {
         EntryEntityDao entityDao = mDaoSession.getEntryEntityDao();
 
         List<EntryEntity> userEntities = entityDao
@@ -80,5 +69,22 @@ public class EntryRepository extends BaseRepository {
 
     public Entry findEntryById(long id) {
         return findEntryByProperty(EntryEntityDao.Properties.Id, id);
+    }
+
+    public void deleteAll() {
+        EntryEntityDao entityDao = mDaoSession.getEntryEntityDao();
+        entityDao.deleteAll();
+    }
+
+    public void deleteAllEntriesCreatedBefore(long timestamp) {
+        EntryEntityDao entityDao = mDaoSession.getEntryEntityDao();
+
+        DeleteQuery query = entityDao.queryBuilder()
+                .where(EntryEntityDao.Properties.Created.lt(timestamp))
+                .buildDelete();
+
+        query.executeDeleteWithoutDetachingEntities();
+
+        entityDao.detachAll();
     }
 }

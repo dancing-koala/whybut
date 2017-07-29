@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/white"
+    android:orientation="horizontal"
+    android:paddingBottom="@dimen/List.Item.Simple.Padding.V"
+    android:paddingLeft="@dimen/List.Item.Simple.Padding.H"
+    android:paddingRight="@dimen/List.Item.Simple.Padding.H"
+    android:paddingTop="@dimen/List.Item.Simple.Padding.V">
+
+    <Switch
+        android:id="@+id/reminder_switch"
+        android:layout_centerVertical="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <CheckBox
+        android:id="@+id/reminder_checkbox"
+        android:layout_centerVertical="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/reminder_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/Base.Margin.Small"
+        android:layout_centerInParent="true"
+        android:text="08:00"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+        android:textColor="@color/colorAccent"
+        android:textStyle="bold" />
+
+</RelativeLayout>
+

@@ -44,15 +44,17 @@ public class SettingsManager {
         editor.commit();
     }
 
-    public boolean isWhybutEnabled() {
-        return readSetting(Settings.WHYBUT_ENABLED, Settings.DEFAULT_WHYBUT_ENABLED);
+    private int readSetting(String settingName, int defaultValue) {
+        return mSharedPreferences.getInt(settingName, defaultValue);
     }
 
-    public void setWhybutEnabled(boolean enabled) {
-        editSetting(Settings.WHYBUT_ENABLED, enabled);
+    private void editSetting(String settingName, int value) {
+        SharedPreferences.Editor editor = mSharedPreferences.edit();
+        editor.putInt(settingName, value);
+        editor.commit();
     }
 
-    public boolean[] getDaysOfWeek() {
+    public boolean[] getWeekDays() {
         return Settings.parseDaysOfWeek(readSetting(Settings.DAYS_OF_WEEK, Settings.DEFAULT_DAYS_OF_WEEK));
     }
 
@@ -60,51 +62,27 @@ public class SettingsManager {
         editSetting(Settings.DAYS_OF_WEEK, Settings.encodeDaysOfWeek(daysOfWeek));
     }
 
-    public String getReminder1Time() {
-        return readSetting(Settings.TIME_REMINDER_1, Settings.DEFAULT_TIME_REMINDER_1);
+    public String getReminderTime(long id) {
+        return readSetting(Settings.getReminderKey(Settings.REMINDER_TIME_TEMPLATE, id), Settings.DEFAULT_REMINDER_TIME);
     }
 
-    public void setReminder1Time(String time) {
-        editSetting(Settings.TIME_REMINDER_1, time);
+    public void setReminderTime(long id, String time) {
+        editSetting(Settings.getReminderKey(Settings.REMINDER_TIME_TEMPLATE, id), time);
     }
 
-    public String getReminder2Time() {
-        return readSetting(Settings.TIME_REMINDER_2, Settings.DEFAULT_TIME_REMINDER_2);
+    public boolean isReminderEnabled(long id) {
+        return readSetting(Settings.getReminderKey(Settings.REMINDER_ENABLED_TEMPLATE, id), Settings.DEFAULT_REMINDER_ENABLED);
     }
 
-    public void setReminder2Time(String time) {
-        editSetting(Settings.TIME_REMINDER_2, time);
+    public void setReminderEnabled(long id, boolean enabled) {
+        editSetting(Settings.getReminderKey(Settings.REMINDER_ENABLED_TEMPLATE, id), enabled);
     }
 
-    public String getReminder3Time() {
-        return readSetting(Settings.TIME_REMINDER_3, Settings.DEFAULT_TIME_REMINDER_3);
+    public int getEntryLifespan() {
+        return readSetting(Settings.ENTRY_LIFESPAN, Settings.DEFAULT_ENTRY_LIFESPAN);
     }
 
-    public void setReminder3Time(String time) {
-        editSetting(Settings.TIME_REMINDER_3, time);
-    }
-
-    public boolean isReminder1Enabled() {
-        return readSetting(Settings.REMINDER_1_ENABLED, Settings.DEFAULT_REMINDER_1_ENABLED);
-    }
-
-    public void setReminder1Enabled(boolean enabled) {
-        editSetting(Settings.REMINDER_1_ENABLED, enabled);
-    }
-
-    public boolean isReminder2Enabled() {
-        return readSetting(Settings.REMINDER_2_ENABLED, Settings.DEFAULT_REMINDER_2_ENABLED);
-    }
-
-    public void setReminder2Enabled(boolean enabled) {
-        editSetting(Settings.REMINDER_2_ENABLED, enabled);
-    }
-
-    public boolean isReminder3Enabled() {
-        return readSetting(Settings.REMINDER_3_ENABLED, Settings.DEFAULT_REMINDER_3_ENABLED);
-    }
-
-    public void setReminder3Enabled(boolean enabled) {
-        editSetting(Settings.REMINDER_3_ENABLED, enabled);
+    public void setEntryLifespan(int lifespan) {
+        editSetting(Settings.ENTRY_LIFESPAN, lifespan);
     }
 }

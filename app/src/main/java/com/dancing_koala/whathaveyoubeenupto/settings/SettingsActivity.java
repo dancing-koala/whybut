@@ -1,49 +1,40 @@
 package com.dancing_koala.whathaveyoubeenupto.settings;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.LinearLayout;
-import android.widget.Switch;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.ToggleButton;
 
-import com.codetroopers.betterpickers.radialtimepicker.RadialTimePickerDialogFragment;
-import com.codetroopers.betterpickers.timepicker.TimePickerDialogFragment;
+import com.dancing_koala.whathaveyoubeenupto.BuildConfig;
 import com.dancing_koala.whathaveyoubeenupto.R;
-import com.dancing_koala.whathaveyoubeenupto.application.utils.DateTimeUtils;
-import com.dancing_koala.whathaveyoubeenupto.settings.mvp.ISettingsEditorView;
+import com.dancing_koala.whathaveyoubeenupto.application.WhybutApp;
+import com.dancing_koala.whathaveyoubeenupto.data.repository.EntryRepository;
+import com.dancing_koala.whathaveyoubeenupto.settings.mvp.ISettingsView;
 import com.dancing_koala.whathaveyoubeenupto.settings.mvp.SettingsPresenter;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
-public class SettingsActivity extends AppCompatActivity implements ISettingsEditorView {
+public class SettingsActivity extends AppCompatActivity implements ISettingsView {
 
-    public static final String TIMEPICKER_DIALOG_FRAGMENT_TAG = TimePickerDialogFragment.class.getName();
+    public static final int RESULT_ENTRIES_ALTERED = 0x321;
 
-    @BindView(R.id.reminder_1_switch)
-    public Switch mReminder1Switch;
-    @BindView(R.id.reminder_1_time)
-    public TextView mReminder1Time;
+    @BindView(R.id.delete_task_select)
+    public Spinner mDeleteTaskSelect;
 
-    @BindView(R.id.reminder_2_switch)
-    public Switch mReminder2Switch;
-    @BindView(R.id.reminder_2_time)
-    public TextView mReminder2Time;
-
-    @BindView(R.id.reminder_3_switch)
-    public Switch mReminder3Switch;
-    @BindView(R.id.reminder_3_time)
-    public TextView mReminder3Time;
-
-    private ToggleButton[] mDaysOfWeekButtons;
     private SettingsPresenter mPresenter;
+    private AlertDialog mConfirmationDialog;
 
-    private RadialTimePickerDialogFragment mTimePickerDialog;
+    private int[] mEntryLifespans;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,11 +45,16 @@ public class SettingsActivity extends AppCompatActivity implements ISettingsEdit
         ButterKnife.bind(this);
 
         initActionbar();
-        findAndStoreDaysOfWeekButtons();
-        initRemindersStateListeners();
-        initTimePickerDialog();
+        initDeleteTaskSelect();
+        initConfirmationDialog();
 
-        mPresenter = new SettingsPresenter(SettingsManager.getInstance());
+        ((TextView) findViewById(R.id.app_version)).setText(getString(R.string.version_format, BuildConfig.VERSION_NAME));
+
+        mPresenter = new SettingsPresenter(
+                SettingsManager.getInstance(),
+                new EntryRepository(((WhybutApp) getApplication()).getDaoSession())
+        );
+
         mPresenter.attachView(this);
     }
 
@@ -70,161 +66,42 @@ public class SettingsActivity extends AppCompatActivity implements ISettingsEdit
         }
     }
 
-    private void initTimePickerDialog() {
-        mTimePickerDialog = new RadialTimePickerDialogFragment()
-                .setOnTimeSetListener(new RadialTimePickerDialogFragment.OnTimeSetListener() {
-                    @Override
-                    public void onTimeSet(RadialTimePickerDialogFragment dialog, int hourOfDay, int minute) {
-                        Toast.makeText(SettingsActivity.this, hourOfDay + "-" + minute, Toast.LENGTH_SHORT).show();
-                    }
-                })
-                .setThemeCustom(R.style.BetterPickersDialogs)
-                .setDoneText(getString(R.string.ok))
-                .setCancelText(getString(R.string.cancel));
+    private void initConfirmationDialog() {
+        mConfirmationDialog = new AlertDialog.Builder(this)
+                .setTitle(R.string.danger)
+                .setNegativeButton(R.string.cancel, null)
+                .create();
     }
 
-    private void findAndStoreDaysOfWeekButtons() {
-        LinearLayout daysOfWeekWrapper = (LinearLayout) findViewById(R.id.days_of_week_wrapper);
+    private void initDeleteTaskSelect() {
+        ArrayAdapter<Integer> adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item);
 
-        final int childCount = daysOfWeekWrapper.getChildCount();
-        mDaysOfWeekButtons = new ToggleButton[childCount];
+        mEntryLifespans = getResources().getIntArray(R.array.settings_tasks_delays);
 
-        for (int i = 0; i < childCount; i++) {
-            mDaysOfWeekButtons[i] = (ToggleButton) daysOfWeekWrapper.getChildAt(i);
-            final int index = i;
-            mDaysOfWeekButtons[i].setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    mPresenter.setDayOfWeekState(index, ((ToggleButton) v).isChecked());
-                }
-            });
+        for (int option : mEntryLifespans) {
+            adapter.add(option);
         }
-    }
 
-    private void initRemindersStateListeners() {
-        mReminder1Switch.setOnClickListener(new View.OnClickListener() {
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        mDeleteTaskSelect.setAdapter(adapter);
+
+        mDeleteTaskSelect.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onClick(View v) {
-                mPresenter.setReminder1State(((Switch) v).isChecked());
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                mPresenter.onEntryLifespanChanged(mEntryLifespans[position]);
             }
-        });
 
-        mReminder2Switch.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                mPresenter.setReminder2State(((Switch) v).isChecked());
-            }
-        });
+            public void onNothingSelected(AdapterView<?> parent) {
 
-        mReminder3Switch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mPresenter.setReminder3State(((Switch) v).isChecked());
-            }
-        });
-
-        findViewById(R.id.reminder_1_time_btn).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mPresenter.onEditReminder1TimeClicked();
-            }
-        });
-
-        findViewById(R.id.reminder_2_time_btn).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mPresenter.onEditReminder2TimeClicked();
-            }
-        });
-
-        findViewById(R.id.reminder_3_time_btn).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mPresenter.onEditReminder3TimeClicked();
             }
         });
     }
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-        mPresenter.detachView();
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        mPresenter.attachView(this);
-    }
-
-    @Override
-    public void displayDaysOfWeekStates(boolean[] daysOfWeekStates) {
-        for (int i = 0; i < mDaysOfWeekButtons.length; i++) {
-            mDaysOfWeekButtons[i].setChecked(daysOfWeekStates[i]);
-        }
-    }
-
-    @Override
-    public void displayReminder1State(boolean enabled, String time) {
-        mReminder1Switch.setChecked(enabled);
-        mReminder1Time.setText(time);
-    }
-
-    @Override
-    public void displayReminder2State(boolean enabled, String time) {
-        mReminder2Switch.setChecked(enabled);
-        mReminder2Time.setText(time);
-    }
-
-    @Override
-    public void displayReminder3State(boolean enabled, String time) {
-        mReminder3Switch.setChecked(enabled);
-        mReminder3Time.setText(time);
-    }
-
-    @Override
-    public void displayReminder1TimeEditor(int hours, final int minutes) {
-        mTimePickerDialog.setStartTime(hours, minutes);
-        mTimePickerDialog.setOnTimeSetListener(new RadialTimePickerDialogFragment.OnTimeSetListener() {
-            @Override
-            public void onTimeSet(RadialTimePickerDialogFragment dialog, int hourOfDay, int minute) {
-                String formattedTime = DateTimeUtils.formatTime(hourOfDay, minute);
-                mPresenter.setReminder1Time(formattedTime);
-                mReminder1Time.setText(formattedTime);
-            }
-        });
-
-        mTimePickerDialog.show(getSupportFragmentManager(), TIMEPICKER_DIALOG_FRAGMENT_TAG);
-    }
-
-    @Override
-    public void displayReminder2TimeEditor(int hours, int minutes) {
-        mTimePickerDialog.setStartTime(hours, minutes);
-        mTimePickerDialog.setOnTimeSetListener(new RadialTimePickerDialogFragment.OnTimeSetListener() {
-            @Override
-            public void onTimeSet(RadialTimePickerDialogFragment dialog, int hourOfDay, int minute) {
-                String formattedTime = DateTimeUtils.formatTime(hourOfDay, minute);
-                mPresenter.setReminder2Time(formattedTime);
-                mReminder2Time.setText(formattedTime);
-            }
-        });
-
-        mTimePickerDialog.show(getSupportFragmentManager(), TIMEPICKER_DIALOG_FRAGMENT_TAG);
-    }
-
-    @Override
-    public void displayReminder3TimeEditor(int hours, int minutes) {
-        mTimePickerDialog.setStartTime(hours, minutes);
-        mTimePickerDialog.setOnTimeSetListener(new RadialTimePickerDialogFragment.OnTimeSetListener() {
-            @Override
-            public void onTimeSet(RadialTimePickerDialogFragment dialog, int hourOfDay, int minute) {
-                String formattedTime = DateTimeUtils.formatTime(hourOfDay, minute);
-                mPresenter.setReminder3Time(formattedTime);
-                mReminder3Time.setText(formattedTime);
-            }
-        });
-
-        mTimePickerDialog.show(getSupportFragmentManager(), TIMEPICKER_DIALOG_FRAGMENT_TAG);
+    @OnClick(R.id.delete_all_btn)
+    public void onDeleteAllEntriesButtonClick() {
+        mPresenter.onDeleteAllEntriesClicked();
     }
 
     @Override
@@ -235,5 +112,39 @@ public class SettingsActivity extends AppCompatActivity implements ISettingsEdit
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void displayDeleteAllEntriesConfirmation() {
+        mConfirmationDialog.setMessage(getString(R.string.settings_delete_all_confirm_msg));
+        mConfirmationDialog.setButton(DialogInterface.BUTTON_POSITIVE, getString(R.string.do_it), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                mPresenter.onDeleteAllEntriesConfirmed();
+                setResult(RESULT_ENTRIES_ALTERED);
+            }
+        });
+
+        mConfirmationDialog.show();
+    }
+
+    @Override
+    public void displayDeletionDoneMessage() {
+        Toast.makeText(this, R.string.all_done, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void displayCurrentEntryLifespan(int lifespanInDays) {
+        mDeleteTaskSelect.setSelection(getIndexInArray(lifespanInDays, mEntryLifespans));
+    }
+
+    private int getIndexInArray(int value, int[] array) {
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] == value) {
+                return i;
+            }
+        }
+
+        return -1;
     }
 }

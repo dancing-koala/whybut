@@ -10,34 +10,24 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/Dialog.Title.MarginBottom"
-        android:background="@color/colorPrimary"
-        android:paddingBottom="@dimen/Dialog.Title.PaddingBottom"
-        android:paddingLeft="@dimen/Dialog.ContentArea.Padding"
-        android:paddingRight="@dimen/Dialog.ContentArea.Padding"
-        android:paddingTop="@dimen/Dialog.ContentArea.Padding"
-        android:text="@string/title_activity_entry_add"
-        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
-        android:textColor="@android:color/white"
-        android:textStyle="bold" />
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/Entry.Content.Input.Height"
         android:layout_marginLeft="@dimen/Dialog.ContentArea.Padding"
         android:layout_marginRight="@dimen/Dialog.ContentArea.Padding"
-        android:clipToPadding="false"
-        android:paddingBottom="@dimen/Entry.Content.Input.Padding">
+        android:paddingTop="@dimen/Dialog.ContentArea.Padding"
+        android:text="@string/title_activity_entry_add"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+        android:textColor="@color/colorFontPrimary" />
 
-        <EditText
-            android:id="@+id/entry_content_input"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="top"
-            android:hint="@string/input_content_hint"
-            android:inputType="textCapSentences|textMultiLine"
-            android:textColor="@color/colorFontPrimary" />
-
-    </ScrollView>
+    <EditText
+        android:id="@+id/entry_content_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/Dialog.ContentArea.Padding"
+        android:layout_marginRight="@dimen/Dialog.ContentArea.Padding"
+        android:gravity="top"
+        android:layout_marginBottom="@dimen/Dialog.ContentArea.Padding"
+        android:hint="@string/input_content_hint"
+        android:inputType="textCapSentences|textMultiLine"
+        android:textColor="@color/colorFontPrimary" />
 
     <LinearLayout
         android:layout_width="match_parent"

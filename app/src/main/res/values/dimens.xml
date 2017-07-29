@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <dimen name="Base.Margin.Mini">4dp</dimen>
     <dimen name="Base.Margin.Small">8dp</dimen>
     <dimen name="Base.Margin.Normal">16dp</dimen>
+    <dimen name="Base.Margin.PreventFABMasking">80dp</dimen>
 
     <dimen name="SettingCardview.Title.Margin.Bottom">16dp</dimen>
-    <dimen name="SettingCardview.Padding">8dp</dimen>
+    <dimen name="SettingCardview.Padding">16dp</dimen>
     <dimen name="SettingCardview.Spacing">8dp</dimen>
 
     <dimen name="FAB.Normal.Size">56dp</dimen>
@@ -19,6 +21,8 @@
     <dimen name="List.Item.Simple.WithActions.SecondaryAction.Size">32dp</dimen>
     <dimen name="List.Item.Simple.WithActions.SecondaryAction.Padding">4dp</dimen>
 
+    <dimen name="List.Item.Big.Height">72dp</dimen>
+
     <dimen name="Dialog.ContentArea.Padding">24dp</dimen>
     <dimen name="Dialog.Title.MarginBottom">20dp</dimen>
     <dimen name="Dialog.Title.PaddingBottom">8dp</dimen>
@@ -30,4 +34,6 @@
 
     <dimen name="Entry.Content.Input.Height">96dp</dimen>
     <dimen name="Entry.Content.Input.Padding">4dp</dimen>
+    <dimen name="PlaceHolder.Icon.Size">128dp</dimen>
+    <dimen name="PlaceHolder.SmileyIcon.Size">48sp</dimen>
 </resources>

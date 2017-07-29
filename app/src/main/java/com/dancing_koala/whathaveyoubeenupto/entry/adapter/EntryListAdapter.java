@@ -76,16 +76,6 @@ public class EntryListAdapter extends BaseAdapter {
         notifyDataSetChanged();
     }
 
-    private boolean intInArray(int val, int[] array) {
-        for (int item : array) {
-            if (item == val) {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
     private static class ViewHolder {
         TextView date;
         TextView content;

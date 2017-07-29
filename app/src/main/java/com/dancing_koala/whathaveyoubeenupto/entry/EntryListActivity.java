@@ -2,7 +2,6 @@ package com.dancing_koala.whathaveyoubeenupto.entry;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -17,43 +16,42 @@ import com.dancing_koala.whathaveyoubeenupto.entry.adapter.EntryListAdapter;
 import com.dancing_koala.whathaveyoubeenupto.entry.adapter.EntryListAdapterMapper;
 import com.dancing_koala.whathaveyoubeenupto.entry.mvp.EntryListPresenter;
 import com.dancing_koala.whathaveyoubeenupto.entry.mvp.IEntryListView;
+import com.dancing_koala.whathaveyoubeenupto.reminder.ReminderListActivity;
 import com.dancing_koala.whathaveyoubeenupto.settings.SettingsActivity;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class EntryListActivity extends AppCompatActivity implements IEntryListView {
 
-    public static final int ENTRY_ADD_REQUEST_CODE = 200;
+    public static final int ENTRY_ADD_REQUEST_CODE = 0x123;
+    public static final int SETTINGS_REQUEST_CODE = 0x234;
 
     @BindView(R.id.entry_list)
-    public ListView mEntryListView;
-    @BindView(R.id.add_entry_fab)
-    public FloatingActionButton mAddEntryFab;
+    public ListView mEntryList;
+
+    @BindView(R.id.placeholder)
+    public View mPlaceholder;
 
     private EntryListAdapter mAdapter;
+    private EntryListAdapterMapper mAdapterMapper;
     private EntryListPresenter mPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_entry_list);
+        setTitle(getString(R.string.title_activity_entry_list));
 
         ButterKnife.bind(this);
 
-        mAdapter = new EntryListAdapter(this);
-        mEntryListView.setAdapter(mAdapter);
+        mAdapterMapper = new EntryListAdapterMapper(getString(R.string.label_today), getString(R.string.label_yesterday));
 
-        mAddEntryFab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openEntryAddDialog();
-            }
-        });
+        mAdapter = new EntryListAdapter(this);
+        mEntryList.setAdapter(mAdapter);
 
         mPresenter = new EntryListPresenter(new EntryRepository(((WhybutApp) getApplication()).getDaoSession()));
         mPresenter.loadActiveEntries();
@@ -71,38 +69,10 @@ public class EntryListActivity extends AppCompatActivity implements IEntryListVi
         mPresenter.detachView();
     }
 
-    private void openEntryAddDialog() {
+    @OnClick(R.id.add_entry_fab)
+    public void openEntryAddDialog() {
         Intent entryAddIntent = new Intent(this, EntryAddActivity.class);
         startActivityForResult(entryAddIntent, ENTRY_ADD_REQUEST_CODE);
-    }
-
-    // TODO remove this dev-only method
-    private void populateDbWithRandomData() {
-        String[] contents = new String[]{
-                "content with small length",
-                "Bigger length content but not too big, see the next size",
-                "Biggest content ever with a lot words, punctuation like ':!?' or even '<>/*-'. If you were looking for data placeholder, here you go !",
-                "Not so big content\nBut with line breaks\nSeems useful to me",
-        };
-
-        List<Entry> tmp = new ArrayList<>();
-        Random random = new Random();
-        long now = System.currentTimeMillis();
-
-        for (int i = 0; i < 150; i++) {
-            Entry entry = new Entry(i, contents[random.nextInt(contents.length)]);
-            entry.setCreated(now);
-            entry.setTagIds(new int[0]);
-
-            now -= 4 * 74 * 60 * 1000;
-
-            tmp.add(entry);
-        }
-
-        EntryRepository repository = new EntryRepository(((WhybutApp) getApplication()).getDaoSession());
-        for (Entry entry : tmp) {
-            repository.createEntry(entry);
-        }
     }
 
     @Override
@@ -115,9 +85,15 @@ public class EntryListActivity extends AppCompatActivity implements IEntryListVi
     public boolean onOptionsItemSelected(MenuItem item) {
 
         switch (item.getItemId()) {
+
+            case R.id.menu_reminders:
+                Intent remindersIntent = new Intent(this, ReminderListActivity.class);
+                startActivity(remindersIntent);
+                return true;
+
             case R.id.menu_settings:
                 Intent settingsIntent = new Intent(this, SettingsActivity.class);
-                startActivity(settingsIntent);
+                startActivityForResult(settingsIntent, SETTINGS_REQUEST_CODE);
                 return true;
 
             case R.id.menu_quit:
@@ -133,12 +109,18 @@ public class EntryListActivity extends AppCompatActivity implements IEntryListVi
 
     @Override
     public void displayEntries(List<Entry> entryList) {
-        mAdapter.updateEntryList(EntryListAdapterMapper.modelsToItems(entryList));
+        togglePlaceholder(entryList.isEmpty());
+        mAdapter.updateEntryList(mAdapterMapper.modelsToItems(entryList));
+    }
+
+    private void togglePlaceholder(boolean show) {
+        mPlaceholder.setVisibility(show ? View.VISIBLE : View.GONE);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if(requestCode == ENTRY_ADD_REQUEST_CODE && resultCode == EntryAddActivity.RESULT_ENTRY_ADDED) {
+        if (requestCode == ENTRY_ADD_REQUEST_CODE && resultCode == EntryAddActivity.RESULT_ENTRY_ADDED
+                || requestCode == SETTINGS_REQUEST_CODE && resultCode == SettingsActivity.RESULT_ENTRIES_ALTERED) {
             mPresenter.loadActiveEntries();
             return;
         }
