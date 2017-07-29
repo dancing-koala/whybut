@@ -32,7 +32,6 @@
             android:layout_alignParentLeft="true"
             android:layout_marginRight="8dp"
             android:layout_toLeftOf="@+id/entry_time"
-            android:text="Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem ipsum dolor sit amet em dolor in respum"
             android:textColor="@color/colorFontPrimary" />
 
         <TextView
@@ -40,8 +39,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_alignTop="@+id/entry_content"
-            android:text="09:05" />
+            android:layout_alignTop="@+id/entry_content" />
 
     </RelativeLayout>
 
