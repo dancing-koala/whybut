@@ -2,6 +2,7 @@
 <resources>
     <dimen name="Base.Margin.Small">8dp</dimen>
     <dimen name="Base.Margin.Normal">16dp</dimen>
+    <dimen name="Base.Margin.PreventFABMasking">80dp</dimen>
 
     <dimen name="SettingCardview.Title.Margin.Bottom">16dp</dimen>
     <dimen name="SettingCardview.Padding">8dp</dimen>
@@ -32,4 +33,6 @@
 
     <dimen name="Entry.Content.Input.Height">96dp</dimen>
     <dimen name="Entry.Content.Input.Padding">4dp</dimen>
+    <dimen name="PlaceHolder.Icon.Size">128dp</dimen>
+    <dimen name="PlaceHolder.SmileyIcon.Size">48sp</dimen>
 </resources>

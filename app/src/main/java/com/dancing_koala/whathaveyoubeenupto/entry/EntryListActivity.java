@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ListView;
 
 import com.dancing_koala.whathaveyoubeenupto.R;
@@ -18,9 +19,7 @@ import com.dancing_koala.whathaveyoubeenupto.entry.mvp.IEntryListView;
 import com.dancing_koala.whathaveyoubeenupto.reminder.ReminderListActivity;
 import com.dancing_koala.whathaveyoubeenupto.settings.SettingsActivity;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -28,12 +27,16 @@ import butterknife.OnClick;
 
 public class EntryListActivity extends AppCompatActivity implements IEntryListView {
 
-    public static final int ENTRY_ADD_REQUEST_CODE = 200;
+    public static final int ENTRY_ADD_REQUEST_CODE = 0x123;
 
     @BindView(R.id.entry_list)
-    public ListView mEntryListView;
+    public ListView mEntryList;
+
+    @BindView(R.id.placeholder)
+    public View mPlaceholder;
 
     private EntryListAdapter mAdapter;
+    private EntryListAdapterMapper mAdapterMapper;
     private EntryListPresenter mPresenter;
 
     @Override
@@ -43,8 +46,10 @@ public class EntryListActivity extends AppCompatActivity implements IEntryListVi
 
         ButterKnife.bind(this);
 
+        mAdapterMapper = new EntryListAdapterMapper(getString(R.string.label_today), getString(R.string.label_yesterday));
+
         mAdapter = new EntryListAdapter(this);
-        mEntryListView.setAdapter(mAdapter);
+        mEntryList.setAdapter(mAdapter);
 
         mPresenter = new EntryListPresenter(new EntryRepository(((WhybutApp) getApplication()).getDaoSession()));
         mPresenter.loadActiveEntries();
@@ -102,7 +107,12 @@ public class EntryListActivity extends AppCompatActivity implements IEntryListVi
 
     @Override
     public void displayEntries(List<Entry> entryList) {
-        mAdapter.updateEntryList(EntryListAdapterMapper.modelsToItems(entryList));
+        togglePlaceholder(entryList.isEmpty());
+        mAdapter.updateEntryList(mAdapterMapper.modelsToItems(entryList));
+    }
+
+    private void togglePlaceholder(boolean show) {
+        mPlaceholder.setVisibility(show ? View.VISIBLE : View.GONE);
     }
 
     @Override

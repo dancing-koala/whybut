@@ -11,7 +11,16 @@ import java.util.List;
  */
 
 public class EntryListAdapterMapper {
-    public static EntryListAdapter.Item modelToItem(Entry model) {
+
+    private final String mTodayLabel;
+    private final String mYesterdayLabel;
+
+    public EntryListAdapterMapper(String todayLabel, String yesterdayLabel) {
+        mTodayLabel = todayLabel;
+        mYesterdayLabel = yesterdayLabel;
+    }
+
+    public EntryListAdapter.Item modelToItem(Entry model) {
         if (model == null) {
             return null;
         }
@@ -21,18 +30,16 @@ public class EntryListAdapterMapper {
         String date = DateTimeUtils.getDateFromTimestamp(created);
         String time = DateTimeUtils.getTimeFromTimestamp(created);
 
-        if(DateTimeUtils.isToday(created)) {
-            date = "Today";
-        }
-
-        if(DateTimeUtils.isYesterday(created)) {
-            date = "Yesterday";
+        if (DateTimeUtils.isToday(created)) {
+            date = mTodayLabel;
+        } else if (DateTimeUtils.isYesterday(created)) {
+            date = mYesterdayLabel;
         }
 
         return new EntryListAdapter.Item(model.getId(), date, model.getContent(), time);
     }
 
-    public static List<EntryListAdapter.Item> modelsToItems(List<Entry> models) {
+    public List<EntryListAdapter.Item> modelsToItems(List<Entry> models) {
         List<EntryListAdapter.Item> items = new ArrayList<>();
         String lastDate = "N/A";
 
@@ -40,7 +47,7 @@ public class EntryListAdapterMapper {
             for (Entry model : models) {
                 EntryListAdapter.Item item = modelToItem(model);
 
-                if(!lastDate.equals(item.getDate())) {
+                if (!lastDate.equals(item.getDate())) {
                     lastDate = item.getDate();
                     item.setShowDateHeader(true);
                 }
