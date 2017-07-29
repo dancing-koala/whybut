@@ -8,7 +8,6 @@ import com.dancing_koala.whathaveyoubeenupto.application.utils.DateTimeUtils;
 import com.dancing_koala.whathaveyoubeenupto.data.dao.DaoMaster;
 import com.dancing_koala.whathaveyoubeenupto.data.dao.DaoSession;
 import com.dancing_koala.whathaveyoubeenupto.settings.SettingsManager;
-import com.facebook.stetho.Stetho;
 
 import org.greenrobot.greendao.database.Database;
 
@@ -23,10 +22,6 @@ public class WhybutApp extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-
-        if (BuildConfig.DEBUG) {
-            Stetho.initializeWithDefaults(this);
-        }
 
         DaoMaster.DevOpenHelper helper = new DaoMaster.DevOpenHelper(this, BuildConfig.DB_NAME);
         Database db = helper.getWritableDb();

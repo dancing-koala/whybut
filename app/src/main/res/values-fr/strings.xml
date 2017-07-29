@@ -18,6 +18,7 @@
     <string name="version_format">Version %s</string>
     <string name="days">jours</string>
     <string name="danger">Danger</string>
+    <string name="no_entry">Pas d\'entrée à afficher</string>
 
     <!--Menus-->
     <string name="menu_item_reminders">Rappels</string>
