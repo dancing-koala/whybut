@@ -10,6 +10,7 @@
     <string name="cancel">Cancel</string>
     <string name="save">Save</string>
     <string name="input_content_hint">Saving the galaxy, drinking coffee…</string>
+    <string name="dunno_smiley">¯\\_(ツ)_/¯</string>
 
     <!--Menus-->
     <string name="menu_item_reminders">Reminders</string>
@@ -26,7 +27,6 @@
         <item>Eventually caught\'em all?</item>
         <item>Broke the coffee drinking world record?</item>
         <item>Managed to get out of bed?</item>
-        <item>Avoided your ex successfully?</item>
         <item>Got a royal flush playing poker?</item>
         <item>Won a scrabble game?</item>
         <item>Managed to avoid the last Windows update?</item>
@@ -60,4 +60,6 @@
     <string name="dow_friday_abbr">F</string>
     <string name="dow_saturday_abbr">Sa</string>
     <string name="dow_sunday_abbr">Su</string>
+    <string name="label_today">Today</string>
+    <string name="label_yesterday">Yesterday</string>
 </resources>
