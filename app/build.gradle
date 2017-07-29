@@ -1,8 +1,8 @@
 apply plugin: 'com.android.application'
 apply plugin: 'org.greenrobot.greendao'
 
-def MAJOR_VERSION = 0
-def MINOR_VERSION = 1
+def MAJOR_VERSION = 1
+def MINOR_VERSION = 0
 def PATCH_VERSION = 0
 
 def keystorePropertiesFile = rootProject.file("keystore.properties")
@@ -28,7 +28,7 @@ android {
         versionName MAJOR_VERSION + "." + MINOR_VERSION + "." + PATCH_VERSION
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
-    
+
     buildTypes {
         debug {
             buildConfigField "String", "DB_NAME", "\"whybut-debug.db\""
