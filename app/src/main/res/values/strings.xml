@@ -4,7 +4,7 @@
     <string name="title_activity_settings">Settings</string>
     <string name="title_activity_reminder_list">Reminders</string>
     <string name="title_activity_entry_list">Entries</string>
-    <string name="title_activity_entry_add">What have you been up to?</string>
+    <string name="title_activity_entry_add">What\'ve you been up to?</string>
 
     <!--General-->
     <string name="ok">OK</string>
@@ -12,7 +12,7 @@
     <string name="all_done">All done</string>
     <string name="cancel">Cancel</string>
     <string name="save">Save</string>
-    <string name="input_content_hint">Saving the galaxy…</string>
+    <string name="input_content_hint">Saving the galaxy, drinking coffee…</string>
     <string name="dunno_smiley">¯\\_(ツ)_/¯</string>
     <string name="version_format">Version %s</string>
     <string name="days">days</string>
