@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:background="@color/colorGrayLight">
 
     <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorGrayLight"
         android:padding="8dp"
         tools:context="com.dancing_koala.whathaveyoubeenupto.settings.SettingsActivity">
 
@@ -23,21 +22,29 @@
                 android:layout_height="wrap_content"
                 app:contentPadding="@dimen/SettingCardview.Padding">
 
-                <include layout="@layout/partial_working_days" />
+                <include layout="@layout/partial_settings_general" />
 
             </android.support.v7.widget.CardView>
 
             <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/SettingCardview.Spacing"
+                android:layout_height="wrap_content"
                 app:contentPadding="@dimen/SettingCardview.Padding">
 
-                <include layout="@layout/partial_reminders" />
+                <include layout="@layout/partial_settings_danger_zone" />
 
             </android.support.v7.widget.CardView>
-
         </LinearLayout>
     </ScrollView>
 
-</LinearLayout>
+    <TextView
+        android:id="@+id/app_version"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/Base.Margin.Normal"
+        android:text="Version x.x.x" />
+
+</RelativeLayout>

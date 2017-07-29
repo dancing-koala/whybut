@@ -28,6 +28,7 @@ import butterknife.OnClick;
 public class EntryListActivity extends AppCompatActivity implements IEntryListView {
 
     public static final int ENTRY_ADD_REQUEST_CODE = 0x123;
+    public static final int SETTINGS_REQUEST_CODE = 0x234;
 
     @BindView(R.id.entry_list)
     public ListView mEntryList;
@@ -91,7 +92,7 @@ public class EntryListActivity extends AppCompatActivity implements IEntryListVi
 
             case R.id.menu_settings:
                 Intent settingsIntent = new Intent(this, SettingsActivity.class);
-                startActivity(settingsIntent);
+                startActivityForResult(settingsIntent, SETTINGS_REQUEST_CODE);
                 return true;
 
             case R.id.menu_quit:
@@ -117,7 +118,8 @@ public class EntryListActivity extends AppCompatActivity implements IEntryListVi
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == ENTRY_ADD_REQUEST_CODE && resultCode == EntryAddActivity.RESULT_ENTRY_ADDED) {
+        if (requestCode == ENTRY_ADD_REQUEST_CODE && resultCode == EntryAddActivity.RESULT_ENTRY_ADDED
+                || requestCode == SETTINGS_REQUEST_CODE && resultCode == SettingsActivity.RESULT_ENTRIES_ALTERED) {
             mPresenter.loadActiveEntries();
             return;
         }
