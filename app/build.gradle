@@ -3,7 +3,7 @@ apply plugin: 'org.greenrobot.greendao'
 
 def MAJOR_VERSION = 1
 def MINOR_VERSION = 0
-def PATCH_VERSION = 0
+def PATCH_VERSION = 1
 
 def keystorePropertiesFile = rootProject.file("keystore.properties")
 def keystoreProperties = new Properties()
@@ -32,7 +32,7 @@ android {
     buildTypes {
         debug {
             buildConfigField "String", "DB_NAME", "\"whybut-debug.db\""
-            minifyEnabled true
+            minifyEnabled false
         }
 
         release {
