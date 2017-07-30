@@ -19,6 +19,8 @@
     <string name="days">jours</string>
     <string name="danger">Danger</string>
     <string name="no_entry">Pas d\'entrée à afficher</string>
+    <string name="great_success">C\'est bon!</string>
+    <string name="failure">Échec</string>
 
     <!--Menus-->
     <string name="menu_item_reminders">Rappels</string>
