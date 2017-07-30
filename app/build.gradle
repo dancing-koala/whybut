@@ -3,7 +3,7 @@ apply plugin: 'org.greenrobot.greendao'
 
 def MAJOR_VERSION = 1
 def MINOR_VERSION = 0
-def PATCH_VERSION = 1
+def PATCH_VERSION = 2
 
 def keystorePropertiesFile = rootProject.file("keystore.properties")
 def keystoreProperties = new Properties()
@@ -69,7 +69,7 @@ dependencies {
     compile 'com.code-troopers.betterpickers:library:3.1.0'
 
     compile 'org.greenrobot:greendao:3.2.2'
-    compile 'net.zetetic:android-database-sqlcipher:3.5.7@aar'
+//    compile 'net.zetetic:android-database-sqlcipher:3.5.7@aar'
 
     compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
 
