@@ -68,13 +68,13 @@ public class EntryAddActivity extends AppCompatActivity implements IEntryAddView
 
     @Override
     public void displayCreationSuccessMessage() {
-        Toast.makeText(this, "Great success!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, R.string.great_success, Toast.LENGTH_SHORT).show();
         setResult(RESULT_ENTRY_ADDED);
         close();
     }
 
     @Override
     public void displayCreationFailureMessage() {
-        Toast.makeText(this, "Failed to create entry!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, R.string.failure, Toast.LENGTH_SHORT).show();
     }
 }
