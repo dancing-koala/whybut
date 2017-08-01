@@ -17,7 +17,7 @@ Because it helps me a lot ! I don't know about you but my days are generally fil
 
 ## Download
 
-You can find it on the (Android Playstore)[https://play.google.com/store/apps/details?id=com.dancing_koala.whathaveyoubeenupto]
+You can find it on the [Android Playstore](https://play.google.com/store/apps/details?id=com.dancing_koala.whathaveyoubeenupto)
 
 ## Technical details
 
