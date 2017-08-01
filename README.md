@@ -1,8 +1,8 @@
 # What's up ?
 
-## What's *What's up ?*
+## What's **What's up ?**
 
-*What's up ?* is an app that helps you log your daily activities. It is designed for a professionnal use but nothing prevents you to use it any other way.
+**What's up ?** is an app that helps you log your daily activities. It is designed for a professionnal use but nothing prevents you to use it any other way.
 
 ## Why
 
